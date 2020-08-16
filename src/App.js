@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import firebase from './firebase';
 import JokeHeader from './JokeHeader';
 import JokeEntry from './JokeEntry';
 import Vote from './Vote';
@@ -46,7 +47,9 @@ class App extends Component {
     ];
 
     this.state = { 
-      jokes: jokes
+      jokes: jokes,
+      firebaseJokes: [],
+      userInput: ""
     };
   }
 
@@ -88,13 +91,64 @@ class App extends Component {
     this.setState({ jokes: newJokes });
   }
 
+  componentDidMount() {
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (snapshot) => {
+      // console.log( snapshot.val() );
+
+      const data = snapshot.val();
+
+      const newJokesArray = [];
+
+      for (let propertyName in data) {
+        newJokesArray.push(data[propertyName])
+      }
+
+      console.log(newJokesArray);
+
+      this.setState({
+        firebaseJokes: newJokesArray
+      });
+
+      
+    })
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      userInput: event.target.value
+    })
+  }
+
+  handleClick = (event) => {
+    event.preventDefault();
+
+    const dbRef = firebase.database().ref();
+
+    dbRef.push(this.state.userInput);
+  }
+
 render() {
     return (
       <div className="App">
-       <JokeHeader />
+      <JokeHeader />
       <JokeEntry />
+      <form action="submit">
+        <label htmlFor="newJoke">Add a joke please</label>
+        <input onChange={this.handleChange} type="text" id="newJoke"/>      
+        <button onClick={this.handleClick}>Add Joke</button>  
+      </form>
+
+      <ul>
+        {
+          this.state.firebaseJokes.map((joke) => {
+            return <li>{joke}</li>
+          })
+        }
+      </ul>
         <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
-       <RandomJoke />
+      <RandomJoke />
       <JokeFooter />
       </div>
     );
