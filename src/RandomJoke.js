@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class RandomJoke extends Component {
     randomJoke = null;
     
@@ -54,48 +53,3 @@ class RandomJoke extends Component {
 }
 
 export default RandomJoke;
-
-
-
-
-
-
-
-// componentDidMount() {
-//     const axios = require("axios");
-//     const generateJoke = () => {
-//         return axios.get("https://icanhazdadjoke.com/").then(response => {
-//           return response;
-//         });
-//     };
-// }
-
-// componentDidMount() {
-//     axios({
-//       url: `//icanhazdadjoke.com/?`,
-//       method: `GET`,
-//       responseType: `json`,
-//     })
-//     .then((response) => {
-//       console.log(response); //.data.data.url?
-//       result = response.data.joke
-//       this.setState({
-//         joke: result
-//       })
-//     })
-//   }
-
-// render() {
-//     return(
-//     <p>{result.data.joke}</p>
-//     )
-// }
-
-
-
-// axios.get('//icanhazdadjoke.com/?').then(res => {
-// 			const results = res.data;
-// 			this.setState({
-// 				jokes: results
-// 			});
-// 		});
