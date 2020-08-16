@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Vote extends Component {
 
-
   handleUpVote = (event) => {
     this.props.upVoteJoke(event.target.id);
   }
@@ -28,9 +27,7 @@ class Vote extends Component {
               }
             )
           }
-        </ul>
-
-        
+        </ul>  
       </div>
     )
   }

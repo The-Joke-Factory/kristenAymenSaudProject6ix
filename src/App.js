@@ -1,5 +1,10 @@
+
 import React, { Component } from 'react';
+import JokeHeader from './JokeHeader';
+import JokeEntry from './JokeEntry';
 import Vote from './Vote';
+import RandomJoke from './RandomJoke';
+import JokeFooter from './JokeFooter';
 import './App.css';
 
 class App extends Component {
@@ -86,7 +91,11 @@ class App extends Component {
 render() {
     return (
       <div className="App">
+       <JokeHeader />
+      <JokeEntry />
         <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
+       <RandomJoke />
+      <JokeFooter />
       </div>
     );
   }
