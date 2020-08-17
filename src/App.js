@@ -10,45 +10,11 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    const jokes = [
-      {
-        id: 1,
-        author: "John Doe",
-        joke: "knock knock...",
-        created_on: "2020/08/15",
-        upvotes: 1,
-        downvotes: 3,
-      },
-      {
-        id: 2,
-        author: "Jane Doe",
-        joke: "who's there...",
-        created_on: "2020/08/16",
-        upvotes: 2,
-        downvotes: 4,
-      },
-      {
-        id: 3,
-        author: "Amanda Smith",
-        joke: "chicken...",
-        created_on: "2020/08/17",
-        upvotes: 4,
-        downvotes: 1,
-      },
-      {
-        id: 4,
-        author: "Jane Austen",
-        joke: "chicken who...",
-        created_on: "2020/08/15",
-        upvotes: 4,
-        downvotes: 6,
-      }
-    ];
 
     this.state = { 
-      jokes: jokes,
-      firebaseJokes: [],
-      userInput: ""
+      jokes: [],
+      jokeInput: "",
+      nameInput: ""
     };
   }
 
@@ -101,31 +67,40 @@ class App extends Component {
       const newJokesArray = [];
 
       for (let propertyName in data) {
+        const record = data[propertyName];
+        const newJoke = {
+          id: propertyName,
+          author: record.author,
+          joke: record.joke,
+          created_on: record.created_on,
+          upvotes: record.upvotes,
+          downvotes: record.downvotes
+        }
         newJokesArray.push(data[propertyName])
       }
 
-      console.log(newJokesArray);
-
       this.setState({
-        firebaseJokes: newJokesArray
+        jokes: newJokesArray
       });
-
-      
     })
   }
 
   handleChange = (event) => {
-    this.setState({
-      userInput: event.target.value
-    })
+    if (event.target.id == "newJoke") {
+      this.setState({
+        jokeInput: event.target.value
+      }) 
+    } else {
+      this.setState({
+        nameInput: event.target.value
+      })
+    }
   }
 
   handleClick = (event) => {
     event.preventDefault();
-
     const dbRef = firebase.database().ref();
-
-    dbRef.push(this.state.userInput);
+    dbRef.push({ author: this.state.nameInput, joke: this.state.jokeInput, upvotes: 0, downvotes: 0 })
   }
 
 render() {
@@ -135,18 +110,12 @@ render() {
       <JokeEntry />
       <form action="submit">
         <label htmlFor="newJoke">Add a joke please</label>
-        <input onChange={this.handleChange} type="text" id="newJoke"/>      
+        <input onChange={this.handleChange} type="text" id="newJoke"/> 
+        <input onChange={this.handleChange} type="text" id="author" />       
         <button onClick={this.handleClick}>Add Joke</button>  
       </form>
 
-      <ul>
-        {
-          this.state.firebaseJokes.map((joke) => {
-            return <li>{joke}</li>
-          })
-        }
-      </ul>
-        <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
+      <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
       <RandomJoke />
       <JokeFooter />
       </div>
