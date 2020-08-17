@@ -43,8 +43,7 @@ class RandomJoke extends Component {
         return(
             <div className="randomJokeContainer">
                 <h1>Random Joke Generator</h1>
-
-                <button onClick={this.onGenerateJoke} disabled={this.state.isGeneratingJoke}>Tell me a joke</button>
+                <button className="randomJokeBtn" onClick={this.onGenerateJoke} disabled={this.state.isGeneratingJoke}>Tell me a joke</button>
 
                 <p className="randomJokeResult">{this.state.isGeneratingJoke ? "Generating random joke..." : this.state.randomJoke}</p>
             </div>

@@ -122,19 +122,20 @@ class App extends Component {
 render() {
     return (
       <div className="App">
-      <JokeHeader />
-      <JokeEntry />
-      <form action="submit">
-        <label htmlFor="newJoke">Add a joke please</label>
-        <input onChange={this.handleChange} type="text" id="newJoke"/> 
-        <label htmlFor="newJoke">What is your name?</label>
-        <input onChange={this.handleChange} type="text" id="author" />       
-        <button onClick={this.handleClick}>Add Joke</button>  
-      </form>
-
-      <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
-      <RandomJoke />
-      <JokeFooter />
+        <div className="wrapper">
+          <JokeHeader />
+          <JokeEntry />
+          <form action="submit">
+            <label htmlFor="newJoke">Got a joke? Let's hear it</label>
+            <input onChange={this.handleChange} type="text" id="newJoke"/> 
+            <label htmlFor="newJoke">Who's posting? (incase it sucks)</label>
+            <input onChange={this.handleChange} type="text" id="author" />       
+            <button className="addJokeBtn" onClick={this.handleClick}>Add Joke</button>  
+          </form>
+          <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
+          <RandomJoke />
+          <JokeFooter />
+        </div>
       </div>
     );
   }
