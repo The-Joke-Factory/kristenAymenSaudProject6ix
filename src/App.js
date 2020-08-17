@@ -131,24 +131,28 @@ class App extends Component {
 render() {
     return (
       <div className="App">
-      <JokeHeader />
-      <JokeEntry />
-      <form action="submit">
-        <label htmlFor="newJoke">Add a joke please</label>
-        <input onChange={this.handleChange} type="text" id="newJoke"/>      
-        <button onClick={this.handleClick}>Add Joke</button>  
-      </form>
+        <JokeHeader />
+        <JokeEntry />
 
-      <ul>
-        {
-          this.state.firebaseJokes.map((joke) => {
-            return <li>{joke}</li>
-          })
-        }
-      </ul>
+        <form action="submit">
+          <label htmlFor="newJoke">Add a joke please</label>
+          <input onChange={this.handleChange} type="text" id="newJoke"/>
+          <input onChange={this.handleChange} type="text" id="author"/>            
+          <button onClick={this.handleClick}>Add Joke</button>  
+        </form>
+
+        <ul>
+          {
+            this.state.firebaseJokes.map((joke) => {
+              return <li>{joke}</li>
+            })
+          }
+        </ul>
+      
         <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
-      <RandomJoke />
-      <JokeFooter />
+        <RandomJoke />
+        <JokeFooter />
+        
       </div>
     );
   }
