@@ -29,7 +29,7 @@ class Vote extends Component {
 
   render() {
     return (
-      <div>
+      <div className="jokeBoard">
         <h2>Vote for which joke will stay, and which will go</h2>
         <ul>
           {
