@@ -5,7 +5,12 @@ import JokeEntry from './JokeEntry';
 import Vote from './Vote';
 import RandomJoke from './RandomJoke';
 import JokeFooter from './JokeFooter';
+// import Main from './Main';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route, Link
+} from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -73,6 +78,11 @@ class App extends Component {
     this.setState({ jokes: newJokes });
   }
 
+  addJoke = (nameInput, jokeInput) => {
+    const dbRef = firebase.database().ref();
+    dbRef.push({ author: nameInput, joke: jokeInput, upvotes: 0, downvotes: 0 });
+  }
+
   // pulling all jokes from firebase to display on page
   componentDidMount() {
     const dbRef = firebase.database().ref();
@@ -99,41 +109,26 @@ class App extends Component {
     })
   }
 
-  // function to grab user input in joke input field, and name input field
-  handleChange = (event) => {
-    if (event.target.id == "newJoke") {
-      this.setState({
-        jokeInput: event.target.value
-      }) 
-    } else {
-      this.setState({
-        nameInput: event.target.value
-      })
-    }
-  }
 
-  // pushing data from joke form to firebase
-  handleClick = (event) => {
-    event.preventDefault();
-    const dbRef = firebase.database().ref();
-    dbRef.push({ author: this.state.nameInput, joke: this.state.jokeInput, upvotes: 0, downvotes: 0 })
-  }
 
 render() {
     return (
       <div className="App">
         <div className="wrapper">
           <JokeHeader />
-          <JokeEntry />
-          <form action="submit">
-            <label htmlFor="newJoke">Got a joke? Let's hear it</label>
-            <input onChange={this.handleChange} type="text" id="newJoke"/> 
-            <label htmlFor="newJoke">Who's posting? (incase it sucks)</label>
-            <input onChange={this.handleChange} type="text" id="author" />       
-            <button className="addJokeBtn" onClick={this.handleClick}>Add Joke</button>  
-          </form>
-          <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
-          <RandomJoke />
+          <Router>
+            <Route exact path="/">
+              <JokeEntry addJoke={this.addJoke}/>
+            </Route>
+          
+            <Route path="/vote">
+              <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
+            </Route> 
+
+            <Route path="/random" component={RandomJoke} />
+            {/* <Route path="/main" component={Main} /> */}
+          </Router>
+          
           <JokeFooter />
         </div>
       </div>

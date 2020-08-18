@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class RandomJoke extends Component {
     randomJoke = null;
@@ -42,10 +43,12 @@ class RandomJoke extends Component {
     render() {
         return(
             <div className="randomJokeContainer">
-                <h1>Random Joke Generator</h1>
-                <button className="randomJokeBtn" onClick={this.onGenerateJoke} disabled={this.state.isGeneratingJoke}>Tell me a joke</button>
+                <h1>Random Joke of the Day</h1>
+                <button className="randomJokeBtn" onClick={this.onGenerateJoke} disabled={this.state.isGeneratingJoke}>Tell me another joke</button>
 
                 <p className="randomJokeResult">{this.state.isGeneratingJoke ? "Generating random joke..." : this.state.randomJoke}</p>
+                <Link to={""}><button className="randomJokeBtn">Enter Another Joke</button></Link>
+                <Link to={"/vote"}><button className="randomJokeBtn">Vote Again</button></Link>
             </div>
         )
     }

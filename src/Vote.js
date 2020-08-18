@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 class Vote extends Component {
 
@@ -42,7 +43,7 @@ class Vote extends Component {
   render() {
     return (
       <div className="jokeBoard">
-        <h2>Vote for which joke will stay, and which will go</h2>
+        <h2>Upvote or Downvote One of the Jokes Below to Move On.</h2>
         <ul>
           {
             this.sortArray().map( (joke, index) => {
@@ -51,8 +52,8 @@ class Vote extends Component {
                 <div>
                   <li key={joke.id} className={this.addVoteColor(index)} >
                     {joke.author} {joke.joke} {joke.created_on}
-                    <button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
-                    <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> Total Votes: {totalVotes}
+                    <Link to={"/random"}><button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button></Link>
+                    <Link to={"/random"}><button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button></Link> Total Votes: {totalVotes}
                   </li>
                 </div>
                 )
