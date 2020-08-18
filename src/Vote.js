@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 class Vote extends Component {
 
   // calling the function (upVoteJoke) to increment the joke at this specific id
-  handleUpVote = (event) => {
-    this.props.upVoteJoke(event.target.id);
+  handleUpVote = (jokeId) => {
+    this.props.upVoteJoke(jokeId);
   }
 
   // calling the function (downVoteJoke) to increment the joke at this specific id
-  handleDownVote = (event) => {
-    this.props.downVoteJoke(event.target.id);
+  handleDownVote = (jokeId) => {
+    this.props.downVoteJoke(jokeId);
   }
 
   //sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
@@ -27,7 +30,13 @@ class Vote extends Component {
       }
     });
     return jokesArray;
-    
+  }
+
+  addVoteColor = (index) => {
+   if (index > 4) {
+     return "jokeLeader4";
+   } 
+   return `jokeLeader${index}`;
   }
 
   render() {
@@ -36,13 +45,14 @@ class Vote extends Component {
         <h2>Vote for which joke will stay, and which will go</h2>
         <ul>
           {
-            this.sortArray().map( (joke) => {
+            this.sortArray().map( (joke, index) => {
               const totalVotes = joke.upvotes - joke.downvotes;
               return ( 
                 <div>
-                  <li key={joke.id} className={(totalVotes < 0 ) ? 'red' : 'green' }>
-                    {joke.author} {joke.joke} {joke.created_on}<button onClick={this.handleUpVote} id={joke.id}>upvote</button>
-                  <button onClick={this.handleDownVote} id={joke.id}>downvote</button>Total Votes{totalVotes}
+                  <li key={joke.id} className={this.addVoteColor(index)} >
+                    {joke.author} {joke.joke} {joke.created_on}
+                    <button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
+                    <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> Total Votes: {totalVotes}
                   </li>
                 </div>
                 )

@@ -112,5 +112,28 @@ li {
   font-size: 25px;
 }
 
+.jokeLeader0, .jokeLeader1, .jokeLeader2, .jokeLeader3, .jokeLeader4 {
+  border-radius: 20px;
+}
+
+.jokeLeader0 {
+  background-color: rgb(153, 51, 255, 1);
+}
+
+.jokeLeader1 {
+  background-color: rgb(153, 51, 255, 0.8);
+}
+.jokeLeader2 {
+  background-color: rgb(153, 51, 255, 0.6);
+}
+
+.jokeLeader3 {
+  background-color: rgb(153, 51, 255, 0.4);
+}
+.jokeLeader4 {
+  background-color: rgb(153, 51, 255, 0.2);
+}
+
+
 
 
