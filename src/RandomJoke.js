@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class RandomJoke extends Component {
     randomJoke = null;
@@ -16,24 +17,25 @@ class RandomJoke extends Component {
         this.onGenerateJoke();
     }
 
-    
-
     //generate a joke
     generateJoke() {
         this.setState({ isGeneratingJoke: true })
 
-        fetch(`//icanhazdadjoke.com/`, {
+        axios({
+            method: 'GET',
+            url: 'https://icanhazdadjoke.com/',
+            responseType: 'json',
             headers: {
-                accept: "application/json" //this will retrieve json data
+                Accept: "application/json" //this will retrieve json data
             }
         })
-
-        .then(response => response.json())
-        .then(json => {
-            this.setState({
-                randomJoke: json.joke,
-                isGeneratingJoke: false
-            });
+        .then((res) => {
+            console.log(res.data.joke);
+            this.setState(
+                {
+                    randomJoke: res.data.joke,
+                    isGeneratingJoke: false
+                })
         });
     }
 
@@ -54,3 +56,41 @@ class RandomJoke extends Component {
 }
 
 export default RandomJoke;
+
+
+// class RandomJoke extends Component {
+//     constructor() {
+//       super();
+//       this.state = {
+//         joke: []
+//       };
+      
+//       this.getJoke = this.getJoke.bind(this);
+//     }
+    
+//     getJoke() {
+//       axios.get(`//icanhazdadjoke.com/`)
+//         .then(response => {
+//         this.setState({joke: response.joke});
+//       }).catch(error => {
+//         console.log(error);
+//       });
+//     }
+    
+//     render() {
+//       return(
+//         <div className="randomJokeContainer">
+//           <h1>Random Joke</h1>
+//           <h3>{this.state.joke}</h3>
+//           <button type="button" 
+//             className="randomJokeBtn"
+//             onClick={this.getJoke}>
+//             Tell me a joke
+//           </button>
+//         </div>
+//       );
+//     }
+// }
+
+
+
