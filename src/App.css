@@ -20,18 +20,16 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: rgb(230, 225, 225); */
-
 }
 
 body {
-  /* border: 2px solid red; */
+ 
   height: 100vh;
   background-color: #7894f7;
 }
 
 .appHead {
-  /*border: 1px solid yellowgreen;*/
+  
   display: flex;
   justify-content: center;
 }
@@ -46,7 +44,6 @@ body {
 }
 
 form {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,10 +53,12 @@ form {
   width: 50%;
   margin: 0 auto;
   margin-top: 20px;
-  /* border: 5px solid #5805c6;; */
   box-shadow: 5px 5px 5px;
-  /* background-color: rgb(153, 51, 255, 0.7); */
   background-color:rgb(230, 225, 225);;
+}
+
+button:hover {
+  background-color: #3b0285;
 }
 
 textarea{
@@ -96,14 +95,6 @@ li {
   margin-top: 10px;
 }
 
-.red {
-  background-color: red;
-}
-
-.green {
-  background-color: green;
-}
-
 .randomJokeBtn {
   background-color: rgb(153, 51, 255);
   border: none;
@@ -114,7 +105,6 @@ li {
 }
 
 .randomJokeContainer {
-  /* border: 1px solid red; */
   width: 50%;
   background-color: white;
   border-radius: 15px;
@@ -131,7 +121,6 @@ li {
 }
 
 .jokeLeader0 {
-  /* background-color: rgb(153, 51, 255, 0.7); */
   border: 5px solid #5805c6;;
   box-shadow: 5px 5px 5px;
 }
@@ -175,7 +164,6 @@ li {
 }
 
 .buttonStyle {
-  /* border-top: 1px solid rgb(230, 225, 225); */
   border-top: 2px solid #5805c6;
   padding-top: 20px;
   text-align: right;
@@ -261,19 +249,21 @@ button {
   }
 }
 
-
 @media (max-width: 750px) {
   .jokeContainer
   li {
     width: 100%;
   }
+
+  form, .randomJokeContainer {
+    width: 90%;
+  }
 }
 
 @media (max-width: 400px) {
-.jokeDetail {
-  
-  flex-direction: column;
-}
+  .jokeDetail {
+    flex-direction: column;
+  }
 }
 
 

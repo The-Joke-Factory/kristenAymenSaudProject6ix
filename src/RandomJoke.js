@@ -17,8 +17,6 @@ class RandomJoke extends Component {
         this.onGenerateJoke();
     }
 
-    
-
     //generate a joke
     generateJoke() {
         this.setState({ isGeneratingJoke: true })
@@ -32,7 +30,6 @@ class RandomJoke extends Component {
             }
         })
         .then((res) => {
-            console.log(res.data.joke);
             this.setState(
                 {
                     randomJoke: res.data.joke,
@@ -58,3 +55,4 @@ class RandomJoke extends Component {
 }
 
 export default RandomJoke;
+

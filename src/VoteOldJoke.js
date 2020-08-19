@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import Vote from "./Vote";
 import firebase from './firebase';
 
-
-
-
-
-
-
-
-
 class VoteOldJoke extends Component {
 
     constructor(props) {
@@ -23,14 +15,13 @@ class VoteOldJoke extends Component {
       }
 
       componentDidMount() {
-        
         this.getJokes();
       }
     
       // a function to increment the number of upvotes
       upVoteJoke = (jokeId) => {
         const newJokes = this.state.jokes.map( (joke) => {
-          if (joke.id != jokeId) {
+          if (joke.id !== jokeId) {
             return joke;
           }
           //update and create new joke array with new value for downvotes
@@ -59,7 +50,7 @@ class VoteOldJoke extends Component {
     //function to increment the number of downvotes on jokes 
   downVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map((joke) => {
-      if (joke.id != jokeId) {
+      if (joke.id !== jokeId) {
         return joke;
       }
       //update and create new joke array with new value for downvotes
@@ -82,14 +73,6 @@ class VoteOldJoke extends Component {
 
     this.setState({ jokes: newJokes });
   }
-
-  // pulling all jokes from firebase to display on page
- 
-
-  // function to grab user input in joke input field, and name input field
- 
-
-  // pushing data from joke form to firebase
  
     getJokes = () => {
         this.setState({
@@ -114,10 +97,9 @@ class VoteOldJoke extends Component {
               downvotes: record.downvotes
             }
     
-            // console.log(newJoke);
             newJokesArray.push(newJoke)
           }
-        //   console.log(this.state.userDate);
+
         let newArray = newJokesArray;
         if (this.state.userDate !== "") {
             newArray = newJokesArray.filter((joke) => {
@@ -150,9 +132,7 @@ class VoteOldJoke extends Component {
         })
     }
 
-    resetForm = (event) => {
-        // event.preventDefault();
-        
+    resetForm = (event) => {        
         this.setState({
             userDate: "",
         }, () => {
