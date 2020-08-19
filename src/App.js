@@ -18,30 +18,41 @@ class App extends Component {
     };
   }
 
+  // a function to increment the number of upvotes
   upVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map( (joke) => {
       if (joke.id != jokeId) {
         return joke;
       }
+      //update and create new joke array with new value for downvotes
       const newJoke = {
-        id: joke.id,
+        id: jokeId,
         author: joke.author,
         joke: joke.joke,
         created_on: joke.created_on,
         upvotes: joke.upvotes + 1,
         downvotes: joke.downvotes
       };
+
+      // get the joke at this id
+      const jokeRef = firebase.database().ref(jokeId); 
+
+      //update the upvotes property of this joke in firebase
+      jokeRef.child('upvotes').set(newJoke.upvotes);
+
       return newJoke;
     });
 
     this.setState({jokes: newJokes});
   }
 
+    //function to increment the number of downvotes on jokes 
   downVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map((joke) => {
       if (joke.id != jokeId) {
         return joke;
       }
+      //update and create new joke array with new value for downvotes
       const newJoke = {
         id: joke.id,
         author: joke.author,
@@ -50,22 +61,26 @@ class App extends Component {
         upvotes: joke.upvotes,
         downvotes: joke.downvotes + 1
       };
+
+      // get the joke at this id
+      const jokeRef = firebase.database().ref(jokeId); 
+
+      //update the downvotes property of this joke in firebase
+      jokeRef.child('downvotes').set(newJoke.downvotes);
       return newJoke;
     });
 
     this.setState({ jokes: newJokes });
   }
 
+  // pulling all jokes from firebase to display on page
   componentDidMount() {
     const dbRef = firebase.database().ref();
-
     dbRef.on('value', (snapshot) => {
-      // console.log( snapshot.val() );
-
       const data = snapshot.val();
-
       const newJokesArray = [];
 
+      //restructuring data from firebase into our joke object in order to set state for jokes coming back from firebase
       for (let propertyName in data) {
         const record = data[propertyName];
         const newJoke = {
@@ -76,15 +91,15 @@ class App extends Component {
           upvotes: record.upvotes,
           downvotes: record.downvotes
         }
-        newJokesArray.push(data[propertyName])
+        newJokesArray.push(newJoke)
       }
-
       this.setState({
         jokes: newJokesArray
       });
     })
   }
 
+  // function to grab user input in joke input field, and name input field
   handleChange = (event) => {
     if (event.target.id == "newJoke") {
       this.setState({
@@ -97,6 +112,7 @@ class App extends Component {
     }
   }
 
+  // pushing data from joke form to firebase
   handleClick = (event) => {
     event.preventDefault();
     const dbRef = firebase.database().ref();
