@@ -16,6 +16,8 @@ class RandomJoke extends Component {
         this.onGenerateJoke();
     }
 
+    
+
     //generate a joke
     generateJoke() {
         this.setState({ isGeneratingJoke: true })

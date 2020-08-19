@@ -15,10 +15,30 @@ class Vote extends Component {
     this.props.downVoteJoke(jokeId);
   }
 
-  //sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
-  sortArray = () => {
+  sortArrayByDate = (array) => {
     let jokesArray = [...this.props.jokes];
     jokesArray.sort((jokeA, jokeB) => {
+      const jokeADate = new Date(jokeA.created_on);
+      const jokeBDate = new Date(jokeB.created_on);
+      if (jokeADate > jokeBDate) {
+        return -1;
+      } else if (jokeADate < jokeBDate) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    // console.log(jokesArray);
+    return jokesArray;
+  }
+
+
+  //sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
+  sortArray = () => {
+    
+    let jokesArray = [...this.props.jokes];
+    const jokesGroup = this.sortArrayByDate(jokesArray);
+    jokesGroup.sort((jokeA, jokeB) => {
       const totalVotesA = jokeA.upvotes - jokeA.downvotes;
       const totalVotesB = jokeB.upvotes - jokeB.downvotes;
       if (totalVotesB < totalVotesA) {
@@ -29,7 +49,8 @@ class Vote extends Component {
         return 0;
       }
     });
-    return jokesArray;
+    
+    return jokesGroup;
   }
 
   addVoteColor = (index) => {
