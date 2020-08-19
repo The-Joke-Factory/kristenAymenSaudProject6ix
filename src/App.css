@@ -1,14 +1,12 @@
 html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
 
+.clearfix:after {visibility: hidden; display: block; font-size: 0; content: ''; clear: both; height: 0; }
+
 html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
 
 *, *:before, *:after {box-sizing: inherit}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
-
-/* +++++++++++++++++++++++++++++++ GENERAL STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .App {
   text-align: center;
@@ -22,124 +20,107 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+
 }
 
 body {
-  background: linear-gradient(45deg, rgb(182, 109, 255) 0%, rgb(105, 211, 247) 100%);
+ 
+  height: 100vh;
+  background-color: #7894f7;
 }
 
-h1, h2, p, footer {
-  font-family: 'Roboto', sans-serif;
-}
-
-/* +++++++++++++++++++++++++++++++ HEADER STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .appHead {
+  
   display: flex;
   justify-content: center;
 }
 
 .dadJokesHead {
-  width: 100%;
+  width: 300px;
   background-color: rgb(135, 18, 252);
   padding: 25px;
   border-radius: 15px;
-  color: rgb(234, 231, 230);
-  font-size: 3rem;
-}
-
-.btn {
-  background-color: rgb(153, 51, 255);
-  border: none;
-  padding: 10px;
-  margin: 20px;
-  border-radius: 5px;
-  color: rgb(234, 231, 230);
-  font-size: 1rem;
-  width: 180px;
-}
-
-.btn:hover {
-  background-color: rgb(64,23,176);
-}
-
-/* +++++++++++++++++++++++++++++++ FORM STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-h2 {
-  color: rgb(64,23,176);
-  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  font-size: 50px;
 }
 
 form {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px;
-  background-color: rgb(153, 51, 255, 0.3);
+  border: 2px solid black;
   border-radius: 15px;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 5px 5px 5px;
+  background-color:rgb(230, 225, 225);;
 }
 
-input, textarea {
-  margin: 5px 0 20px 0;
+textarea{
+  resize: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+input {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 label {
   font-weight: 800;
-  color: rgb(64,23,176);
-  margin-top: 10px;
 }
 
 .addJokeBtn {
-  background-color: rgb(64,23,176);
+  background-color: rgb(153, 51, 255);
   border: none;
   padding: 15px;
   border-radius: 5px;
-  color: rgb(234, 231, 230);
-  font-size: 1rem;
+  color: white;
+  font-size: 15px;
   width: 100px;
 }
 
-.addJokeBtn:hover {
-  background-color: rgb(153, 51, 255);
-}
-
-/* +++++++++++++++++++++++++++++++ VOTE SECTION STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-.jokeBoard {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.jokeBoard h2 {
-  color: rgb(64,23,176);
+h1, h2, p, footer {
   font-family: 'roboto';
-  font-size: 2rem;
-}
-
-.jokeBoard ul {
-  margin-left: 0;
-  padding-left: 0;
 }
 
 li {
   list-style: none;
   margin-top: 10px;
-  margin-left: 0;
-  padding: 10px;
 }
 
-.voteList p {
-  color: rgb(234, 231, 230);
+.red {
+  background-color: red;
 }
 
-.voteList {
-  margin: 0 auto;
+.green {
+  background-color: green;
 }
 
-.singleJoke {
-  font-style: italic;
-  font-weight: bold;
+.randomJokeBtn {
+  background-color: rgb(153, 51, 255);
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+}
+
+.randomJokeContainer {
+  width: 50%;
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 50px;
+}
+
+.randomJokeResult {
+  font-size: 25px;
 }
 
 .jokeLeader0, .jokeLeader1, .jokeLeader2, .jokeLeader3, .jokeLeader4 {
@@ -147,95 +128,155 @@ li {
 }
 
 .jokeLeader0 {
-  background-color: rgb(153, 51, 255, 1);
+  border: 5px solid #5805c6;;
+  box-shadow: 5px 5px 5px;
 }
 
 .jokeLeader1 {
-  background-color: rgb(153, 51, 255, 0.8);
+  background-color: rgb(153, 51, 255, 0.7);
+  
 }
 .jokeLeader2 {
-  background-color: rgb(153, 51, 255, 0.6);
+  background-color: rgb(153, 51, 255, 0.7);
 }
 
 .jokeLeader3 {
-  background-color: rgb(153, 51, 255, 0.4);
+  background-color: rgb(153, 51, 255, 0.7);
 }
 .jokeLeader4 {
-  background-color: rgb(153, 51, 255, 0.2);
+  background-color: rgb(153, 51, 255, 0.7);
 }
 
-.votelist {
+.jokeContainer {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  padding: 10px;
+  width: 100%;
 }
 
-/* +++++++++++++++++++++++++++++++ RANDOM JOKE SECTION STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.jokeContainer
+li {
+  width: calc(100% / 3 - 20px);
+  min-height: 200px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: white;
+  border: 5px solid #5805c6;;
+  box-shadow: 5px 5px 5px;
+}
 
-.randomJokeBtn {
+.jokeDetail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonStyle {
+  border-top: 2px solid #5805c6;
+  padding-top: 20px;
+  text-align: right;
+}
+
+.buttonStyle
+button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  margin-left: 10px;
+}
+
+.cardWrapper {
+  min-height: 200px;
+}
+
+.cardWrapper
+p {
+  font-size: 20px;
+}
+
+.cardWrapper
+h2 {
+  color: black;
+}
+
+.jokeDetail
+p {
+  font-size: 16px;
+}
+
+label {
+  font-size: 25px;
+  color:#5805c6;
+}
+
+input[type=text],
+textarea {
+  width: 65%;
+  padding: 20px;
+}
+
+.jokeBoard>h2{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 35px;
+}
+
+nav
+ul {
+  display: flex;
+}
+
+nav 
+ul
+li {
+  margin-right: 20px;
+  
+}
+
+form
+button {
+  margin-bottom: 20px;
   background-color: rgb(153, 51, 255);
   border: none;
   padding: 15px;
   border-radius: 5px;
-  color: rgb(234, 231, 230);
-  font-size: 1rem;
+  color: white;
+  font-size: 15px;
 }
 
-.randomJokeContainer {
-  width: 50%;
-  background-color: rgb(153, 51, 255, 0.3);
-  border-radius: 15px;
-  padding: 25px;
-  margin-top: 50px;
-  margin-bottom: 100px;
+.randomOtherContainer {
+  width: 100%;
 }
 
-.randomJokeContainer h2, p {
-  color: rgb(64,23,176);
+@media (max-width: 1200px) {
+  .jokeContainer
+  li {
+    width: calc(100% / 2 - 20px);
+  }
 }
 
-.randomJokeResult {
-  font-size: 2rem;
+
+@media (max-width: 750px) {
+  .jokeContainer
+  li {
+    width: 100%;
+  }
 }
 
-/* +++++++++++++++++++++++++++++++ FOOTER STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-footer {
-  background-color: rgb(153, 51, 255, 1);
-  height: 30vh;
-  margin: 0 auto;
-  display: flex;
+@media (max-width: 400px) {
+.jokeDetail {
+  
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
 }
 
-footer p {
-  margin: 0 35px 0 35px;
-  color: rgb(234, 231, 230);
-}
 
-/* +++++++++++++++++++++++++++++++ MOBILE/RESPONSIVE STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-@media (max-width: 900px) {
-    .randomJokeResult {
-    font-size: 1rem;
-  }
-}
 
-@media (max-width: 740px) {
-  .links {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-  }
-  .btn {
-    margin: 5px;
-  }
-}
-@media (max-width: 350px) {
-  input, textarea {
-  width: 150px;
-}
-}
+
+
+
+
+
+

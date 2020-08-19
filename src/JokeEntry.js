@@ -92,10 +92,10 @@ class JokeEntry extends Component {
         // console.log(newJoke);
         newJokesArray.push(newJoke)
       }
-      
+      newJokesArray.reverse();
       this.setState({
 
-        jokes: newJokesArray.slice(0, 10)
+        jokes: newJokesArray.slice(0, 12)
       });
     })
   }
@@ -122,7 +122,7 @@ class JokeEntry extends Component {
       return;
     }
 
-    const currentDate = new Date().toString();
+    const currentDate = new Date().toDateString();
     // console.log(currentDate);
     
 
@@ -134,18 +134,20 @@ class JokeEntry extends Component {
     
   }
 
-
+  
   render() {
+    console.log(this.state.jokes);
     return (
       <div>
          <form onSubmit={this.submitForm} action="submit">
             <label htmlFor="newJoke">Got a joke? Let's hear it</label>
-            <textarea onChange={this.handleChange} minLength="6" maxLength="400" id="newJoke" required/> 
+
+            <textarea placeholder="Input your joke here" onChange={this.handleChange}  rows="5" cols="50" minLength="6" maxLength="200" id="newJoke" required/> 
             <label htmlFor="newJoke">Who's posting? (incase it sucks)</label>
-            <input onChange={this.handleChange} maxLength="20" type="text" id="author" required />       
+            <input placeholder="Input your name here" onChange={this.handleChange} maxLength="20" type="text" id="author" required />       
             <button className="addJokeBtn">Add Joke</button>  
           </form>
-          <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
+          <Vote parent="jokeEntry" jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
       </div>
     )
   }

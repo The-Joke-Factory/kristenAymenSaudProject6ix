@@ -14,27 +14,31 @@ class App extends Component {
 
 render() {
     return (
-      <Router basename={process.env.PUBLIC_URL}>
-        <div className="App">
-          <div className="wrapper">
-            <JokeHeader />
-            <div className="links">
-              <Link to="/">
-                <button className="btn">Add a Joke</button>
-              </Link> 
-              <Link to="/voteForJoke">
-                <button className="btn">Vote on Jokes</button>
-              </Link>
-              <Link to="/generateJoke">
-                <button className="btn">Get Random Joke</button>
-              </Link>
-            </div>
-            <Route exact path="/" component={JokeEntry} /> 
-            <Route exact path="/voteForJoke" component={VoteOldJoke} />
-            <Route path="/generateJoke" exact component={RandomJoke} />
-          </div>
+
+      <Router>
+      <div className="App">
+        <div className="wrapper">
+          <JokeHeader />
+          <header>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/generateJoke">Random Joke</Link>
+                </li>
+                <li>
+                  <Link to="/kristenAymenSaudProject6ix">Add Joke</Link>
+                </li>
+                <li>
+                  <Link to="/voteForJoke">Vote for a Joke</Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <Route exact path="/kristenAymenSaudProject6ix" component={JokeEntry} />
+          <Route exact path="/voteForJoke" component={VoteOldJoke} />
+          <Route path="/generateJoke" exact component={RandomJoke} />
+          <JokeFooter />
         </div>
-        <JokeFooter />
       </Router>
     );
   }

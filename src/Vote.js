@@ -15,29 +15,14 @@ class Vote extends Component {
     this.props.downVoteJoke(jokeId);
   }
 
-  sortArrayByDate = (array) => {
-    let jokesArray = [...this.props.jokes];
-    jokesArray.sort((jokeA, jokeB) => {
-      const jokeADate = new Date(jokeA.created_on);
-      const jokeBDate = new Date(jokeB.created_on);
-      if (jokeADate > jokeBDate) {
-        return -1;
-      } else if (jokeADate < jokeBDate) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-    // console.log(jokesArray);
-    return jokesArray;
-  }
 
-  //sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
+
+  // sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
+
   sortArray = () => {
     
     let jokesArray = [...this.props.jokes];
-    const jokesGroup = this.sortArrayByDate(jokesArray);
-    jokesGroup.sort((jokeA, jokeB) => {
+    jokesArray.sort((jokeA, jokeB) => {
       const totalVotesA = jokeA.upvotes - jokeA.downvotes;
       const totalVotesB = jokeB.upvotes - jokeB.downvotes;
       if (totalVotesB < totalVotesA) {
@@ -49,7 +34,7 @@ class Vote extends Component {
       }
     });
     
-    return jokesGroup;
+    return jokesArray;
   }
 
   addVoteColor = (index) => {
@@ -60,24 +45,36 @@ class Vote extends Component {
   }
 
   render() {
+    let jokesArray = [];
+    if (this.props.parent === "jokeEntry") {
+      jokesArray = this.props.jokes;
+    } else {
+      jokesArray = this.sortArray();
+    }
     return (
       <div className="jokeBoard">
-        <h2>Which Jokes Are the Funniest? Cast Your Vote.</h2>
-        <ul>
+
+        <h2>Rate which jokes are best!</h2>
+        <ul className="jokeContainer">
+
           {
-            this.sortArray().map( (joke, index) => {
+
+            jokesArray.map( (joke, index) => {
               const totalVotes = joke.upvotes - joke.downvotes;
               return ( 
-                <div key={joke.id} className="voteList">
-                  <li key={joke.id} className={this.addVoteColor(index)}>
-                    <p className="singleJoke">{joke.joke}</p>
-                    <p>Submitted by: {joke.author}</p>
-                    <p>Submitted on: {joke.created_on}</p>
+
+                  <li key={joke.id} className={this.addVoteColor(index)} >
+                    <div className="cardWrapper">
+                      <h2>{joke.created_on}</h2>
+                      <p>{joke.joke}</p>
+                    </div>
+                    <div className="jokeDetail"> <p> By: {joke.author} </p> <p>Total Votes:{totalVotes}</p></div>
+                    <div className="buttonStyle">
                     <button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
                     <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> 
-                    <p>Total Votes: {totalVotes}</p>
+                    </div>
+
                   </li>
-                </div>
                 )
               }
             )

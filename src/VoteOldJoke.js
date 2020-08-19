@@ -10,7 +10,15 @@ class VoteOldJoke extends Component {
         this.state = { 
           jokes: [],
           userDate: "",
+          
         };
+      }
+
+      componentDidMount() {
+        // this.setState({
+        //     userDate: ""
+        // })
+        this.getJokes();
       }
     
       // a function to increment the number of upvotes
@@ -77,12 +85,7 @@ class VoteOldJoke extends Component {
 
   // pushing data from joke form to firebase
  
-   
-
-
-
-    submitDate = (event) => {
-        event.preventDefault();
+    getJokes = () => {
         this.setState({
             jokes: []
         })
@@ -90,7 +93,7 @@ class VoteOldJoke extends Component {
         const newJokesArray = [];
         dbRef.on('value', (snapshot) => {
           const data = snapshot.val();
-          
+
             
           //restructuring data from firebase into our joke object in order to set state for jokes coming back from firebase
 
@@ -109,47 +112,29 @@ class VoteOldJoke extends Component {
             newJokesArray.push(newJoke)
           }
         //   console.log(this.state.userDate);
-            const newArray = newJokesArray.filter((joke) => {
-            
+        let newArray = newJokesArray;
+        if (this.state.userDate !== "") {
+            newArray = newJokesArray.filter((joke) => {
             let jokeDate = new Date(joke.created_on)
-
             jokeDate = jokeDate.toISOString().substr(0,10);
-            
-
-            // const month = jokeDate.getMonth()+1
-            // jokeDate = jokeDate.getFullYear()+"-"+jokeDate.getMonth()+"-"+jokeDate.getDate();
-            // jokeDate = Date.parse(this.state.userDate);
-            // console.log(jokeDate);
             return jokeDate === this.state.userDate;
-            
-          }) 
-          console.log(newArray)
-          this.setState({
+            }) 
+        }
+
+        if (newArray.length === 0) {
+            alert("Theres no jokes for this day -- select another day");
+        }
+
+        this.setState({
             jokes: newArray
           });
         })
- 
+    }
 
-        
-        // const dbRef = firebase.database().ref();
-            
-        // dbRef.on('value', (snapshot) => {
-        
-    
-        //   let data = snapshot.val();
-    
-          
-        //   if (data === null) {
-        //     data="No current data on this year, check back later!"
-        //   }
-    
-        //   this.setState({
-        //     facts: data
-        //   })
-        // })
-    
-        
 
+    submitDate = (event) => {
+        event.preventDefault();
+        this.getJokes();
     }
 
     getDate = (event) => {
@@ -158,15 +143,26 @@ class VoteOldJoke extends Component {
         })
     }
 
+    resetForm = (event) => {
+        // event.preventDefault();
+        
+        this.setState({
+            userDate: "",
+        }, () => {
+            this.getJokes();
+        });
+    }
+
     render() {
         return (
-            <div>
+            <div className="randomOtherContainer">
                 <form onSubmit={this.submitDate}>
                     <label for>Choose a date</label>
                     <input onChange={this.getDate} type="date"/>
-                    <button>Submit</button>
+                    <button type="submit">Submit</button>
+                    <button onClick={this.resetForm} type="reset">Back to Leaderboard</button>
                 </form>
-                <Vote jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
+                <Vote parent="voteOldJoke" jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
             </div>
         )
     }
