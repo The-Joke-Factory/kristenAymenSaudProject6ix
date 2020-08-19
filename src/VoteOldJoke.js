@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import Vote from "./Vote";
 import firebase from './firebase';
 
-
-
-
-
-
-
-
-
 class VoteOldJoke extends Component {
 
     constructor(props) {
@@ -32,7 +24,7 @@ class VoteOldJoke extends Component {
       // a function to increment the number of upvotes
       upVoteJoke = (jokeId) => {
         const newJokes = this.state.jokes.map( (joke) => {
-          if (joke.id != jokeId) {
+          if (joke.id !== jokeId) {
             return joke;
           }
           //update and create new joke array with new value for downvotes
@@ -61,7 +53,7 @@ class VoteOldJoke extends Component {
     //function to increment the number of downvotes on jokes 
   downVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map((joke) => {
-      if (joke.id != jokeId) {
+      if (joke.id !== jokeId) {
         return joke;
       }
       //update and create new joke array with new value for downvotes

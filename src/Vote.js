@@ -15,25 +15,10 @@ class Vote extends Component {
     this.props.downVoteJoke(jokeId);
   }
 
-  // sortArrayByDate = (array) => {
-  //   let jokesArray = [...this.props.jokes];
-  //   jokesArray.sort((jokeA, jokeB) => {
-  //     const jokeADate = new Date(jokeA.created_on);
-  //     const jokeBDate = new Date(jokeB.created_on);
-  //     if (jokeADate > jokeBDate) {
-  //       return -1;
-  //     } else if (jokeADate < jokeBDate) {
-  //       return 1;
-  //     } else {
-  //       return 0;
-  //     }
-  //   });
-  //   // console.log(jokesArray);
-  //   return jokesArray;
-  // }
 
 
   // sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
+
   sortArray = () => {
     
     let jokesArray = [...this.props.jokes];
@@ -53,10 +38,10 @@ class Vote extends Component {
   }
 
   addVoteColor = (index) => {
-   if (index > 4) {
-     return "jokeLeader4";
-   } 
-   return `jokeLeader${index}`;
+  if (index > 4) {
+    return "jokeLeader4";
+  } 
+  return `jokeLeader${index}`;
   }
 
   render() {
@@ -68,13 +53,16 @@ class Vote extends Component {
     }
     return (
       <div className="jokeBoard">
+
         <h2>Rate which jokes are best!</h2>
         <ul className="jokeContainer">
+
           {
 
             jokesArray.map( (joke, index) => {
               const totalVotes = joke.upvotes - joke.downvotes;
               return ( 
+
                   <li key={joke.id} className={this.addVoteColor(index)} >
                     <div className="cardWrapper">
                       <h2>{joke.created_on}</h2>
@@ -85,6 +73,7 @@ class Vote extends Component {
                     <button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
                     <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> 
                     </div>
+
                   </li>
                 )
               }

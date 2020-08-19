@@ -18,7 +18,7 @@ class JokeEntry extends Component {
   // a function to increment the number of upvotes
   upVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map( (joke) => {
-      if (joke.id != jokeId) {
+      if (joke.id !== jokeId) {
         return joke;
       }
       //update and create new joke array with new value for downvotes
@@ -46,7 +46,7 @@ class JokeEntry extends Component {
     //function to increment the number of downvotes on jokes 
   downVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map((joke) => {
-      if (joke.id != jokeId) {
+      if (joke.id !== jokeId) {
         return joke;
       }
       //update and create new joke array with new value for downvotes
@@ -102,7 +102,7 @@ class JokeEntry extends Component {
 
   // function to grab user input in joke input field, and name input field
   handleChange = (event) => {
-    if (event.target.id == "newJoke") {
+    if (event.target.id === "newJoke") {
       this.setState({
         jokeInput: event.target.value
       }) 
@@ -139,22 +139,14 @@ class JokeEntry extends Component {
     console.log(this.state.jokes);
     return (
       <div>
-
          <form onSubmit={this.submitForm} action="submit">
             <label htmlFor="newJoke">Got a joke? Let's hear it</label>
+
             <textarea placeholder="Input your joke here" onChange={this.handleChange}  rows="5" cols="50" minLength="6" maxLength="200" id="newJoke" required/> 
             <label htmlFor="newJoke">Who's posting? (incase it sucks)</label>
             <input placeholder="Input your name here" onChange={this.handleChange} maxLength="20" type="text" id="author" required />       
             <button className="addJokeBtn">Add Joke</button>  
           </form>
-          {/* <ul>
-            {this.state.jokes.map((joke) => {
-              return ( 
-              <li key={joke.id}>
-                {joke.author} {joke.joke} {joke.created_on}
-              </li> )
-            })}
-          </ul> */}
           <Vote parent="jokeEntry" jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
       </div>
     )
