@@ -32,7 +32,6 @@ class Vote extends Component {
     return jokesArray;
   }
 
-
   //sorting the array of jokes in descending order by total number of votes (upvotes - downvotes)
   sortArray = () => {
     
@@ -54,26 +53,29 @@ class Vote extends Component {
   }
 
   addVoteColor = (index) => {
-   if (index > 4) {
-     return "jokeLeader4";
-   } 
-   return `jokeLeader${index}`;
+  if (index > 4) {
+    return "jokeLeader4";
+  } 
+  return `jokeLeader${index}`;
   }
 
   render() {
     return (
       <div className="jokeBoard">
-        <h2>Vote for which joke will stay, and which will go</h2>
+        <h2>Which Jokes Are the Funniest? Cast Your Vote.</h2>
         <ul>
           {
             this.sortArray().map( (joke, index) => {
               const totalVotes = joke.upvotes - joke.downvotes;
               return ( 
-                <div>
-                  <li key={joke.id} className={this.addVoteColor(index)} >
-                    {joke.author} {joke.joke} {joke.created_on}
+                <div key={joke.id} className="voteList">
+                  <li key={joke.id} className={this.addVoteColor(index)}>
+                    <p className="singleJoke">{joke.joke}</p>
+                    <p>Submitted by: {joke.author}</p>
+                    <p>Submitted on: {joke.created_on}</p>
                     <button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
-                    <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> Total Votes: {totalVotes}
+                    <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> 
+                    <p>Total Votes: {totalVotes}</p>
                   </li>
                 </div>
                 )
