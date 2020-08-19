@@ -23,7 +23,7 @@ render() {
           <Link to="/generateJoke">Random Joke</Link>
           <Link to="/">Add Joke</Link>
           <Link to="/voteForJoke">Vote for a Joke</Link>
-          <Route exact path="/" component={JokeEntry} />
+          <Route exact path="/kristenAymenSaudProject6ix" component={JokeEntry} />
         
           <Route exact path="/voteForJoke" component={VoteOldJoke} />
           <Route path="/generateJoke" exact component={RandomJoke} />
