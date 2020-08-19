@@ -6,12 +6,14 @@ import { faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 class Vote extends Component {
 
   // calling the function (upVoteJoke) to increment the joke at this specific id
-  handleUpVote = (jokeId) => {
+  handleUpVote = (jokeId, event) => {
+    event.preventDefault();
     this.props.upVoteJoke(jokeId);
   }
 
   // calling the function (downVoteJoke) to increment the joke at this specific id
   handleDownVote = (jokeId) => {
+    
     this.props.downVoteJoke(jokeId);
   }
 
@@ -68,7 +70,6 @@ class Vote extends Component {
     }
     return (
       <div className="jokeBoard">
-        <h2>Rate which jokes are best!</h2>
         <ul className="jokeContainer">
           {
 
@@ -82,7 +83,7 @@ class Vote extends Component {
                     </div>
                     <div className="jokeDetail"> <p> By: {joke.author} </p> <p>Total Votes:{totalVotes}</p></div>
                     <div className="buttonStyle">
-                    <button onClick={() => this.handleUpVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
+                    <button onClick={(event) => this.handleUpVote(joke.id, event)} id={joke.id}><FontAwesomeIcon icon={faThumbsUp} /></button>
                     <button onClick={() => this.handleDownVote(joke.id)} id={joke.id}><FontAwesomeIcon icon={faThumbsDown} /></button> 
                     </div>
                   </li>

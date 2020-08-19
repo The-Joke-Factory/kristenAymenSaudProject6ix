@@ -155,6 +155,7 @@ class JokeEntry extends Component {
               </li> )
             })}
           </ul> */}
+          <h2>Rate which jokes are best!</h2>
           <Vote parent="jokeEntry" jokes={this.state.jokes} upVoteJoke={this.upVoteJoke} downVoteJoke={this.downVoteJoke}/>
       </div>
     )
