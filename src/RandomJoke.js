@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class RandomJoke extends Component {
     randomJoke = null;
@@ -20,18 +21,21 @@ class RandomJoke extends Component {
     generateJoke() {
         this.setState({ isGeneratingJoke: true })
 
-        fetch(`//icanhazdadjoke.com/`, {
+        axios({
+            method: 'GET',
+            url: 'https://icanhazdadjoke.com/',
+            responseType: 'json',
             headers: {
-                accept: "application/json" //this will retrieve json data
+                Accept: "application/json" //this will retrieve json data
             }
         })
-
-        .then(response => response.json())
-        .then(json => {
-            this.setState({
-                randomJoke: json.joke,
-                isGeneratingJoke: false
-            });
+        .then((res) => {
+            console.log(res.data.joke);
+            this.setState(
+                {
+                    randomJoke: res.data.joke,
+                    isGeneratingJoke: false
+                })
         });
     }
 
@@ -42,8 +46,7 @@ class RandomJoke extends Component {
     render() {
         return(
             <div className="randomJokeContainer">
-                <h1>Ranadom Joke Generator</h1>
-
+                <h1>Random Joke Generator</h1>
                 <button className="randomJokeBtn" onClick={this.onGenerateJoke} disabled={this.state.isGeneratingJoke}>Tell me a joke</button>
 
                 <p className="randomJokeResult">{this.state.isGeneratingJoke ? "Generating random joke..." : this.state.randomJoke}</p>
@@ -53,3 +56,4 @@ class RandomJoke extends Component {
 }
 
 export default RandomJoke;
+
