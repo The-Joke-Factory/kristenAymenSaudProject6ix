@@ -20,13 +20,14 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: rgb(230, 225, 225); */
 
 }
 
 body {
   /* border: 2px solid red; */
   height: 100vh;
-  background: linear-gradient(45deg, rgb(182, 109, 255) 0%, rgb(105, 211, 247) 100%);
+  background-color: #7894f7;
 }
 
 .appHead {
@@ -50,8 +51,21 @@ form {
   flex-direction: column;
   align-items: center;
   padding: 30px;
-  background-color: white;
+  border: 2px solid black;
   border-radius: 15px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  /* border: 5px solid #5805c6;; */
+  box-shadow: 5px 5px 5px;
+  /* background-color: rgb(153, 51, 255, 0.7); */
+  background-color:rgb(230, 225, 225);;
+}
+
+textarea{
+  resize: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 input {
@@ -117,22 +131,156 @@ li {
 }
 
 .jokeLeader0 {
-  background-color: rgb(153, 51, 255, 1);
+  /* background-color: rgb(153, 51, 255, 0.7); */
+  border: 5px solid #5805c6;;
+  box-shadow: 5px 5px 5px;
 }
 
 .jokeLeader1 {
-  background-color: rgb(153, 51, 255, 0.8);
+  background-color: rgb(153, 51, 255, 0.7);
+  
 }
 .jokeLeader2 {
-  background-color: rgb(153, 51, 255, 0.6);
+  background-color: rgb(153, 51, 255, 0.7);
 }
 
 .jokeLeader3 {
-  background-color: rgb(153, 51, 255, 0.4);
+  background-color: rgb(153, 51, 255, 0.7);
 }
 .jokeLeader4 {
-  background-color: rgb(153, 51, 255, 0.2);
+  background-color: rgb(153, 51, 255, 0.7);
 }
+
+.jokeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.jokeContainer
+li {
+  width: calc(100% / 3 - 20px);
+  min-height: 200px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: white;
+  border: 5px solid #5805c6;;
+  box-shadow: 5px 5px 5px;
+}
+
+.jokeDetail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonStyle {
+  /* border-top: 1px solid rgb(230, 225, 225); */
+  border-top: 2px solid #5805c6;
+  padding-top: 20px;
+  text-align: right;
+}
+
+.buttonStyle
+button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+  margin-left: 10px;
+}
+
+.cardWrapper {
+  min-height: 200px;
+}
+
+.cardWrapper
+p {
+  font-size: 20px;
+}
+
+.cardWrapper
+h2 {
+  color: black;
+}
+
+.jokeDetail
+p {
+  font-size: 16px;
+}
+
+label {
+  font-size: 25px;
+  color:#5805c6;
+}
+
+input[type=text],
+textarea {
+  width: 65%;
+  padding: 20px;
+}
+
+.jokeBoard>h2{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 35px;
+}
+
+nav
+ul {
+  display: flex;
+}
+
+nav 
+ul
+li {
+  margin-right: 20px;
+  
+}
+
+form
+button {
+  margin-bottom: 20px;
+  background-color: rgb(153, 51, 255);
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+}
+
+.randomOtherContainer {
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .jokeContainer
+  li {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+
+@media (max-width: 750px) {
+  .jokeContainer
+  li {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+.jokeDetail {
+  
+  flex-direction: column;
+}
+}
+
+
+
+
+
+
 
 
 

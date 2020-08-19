@@ -19,10 +19,21 @@ render() {
       <div className="App">
         <div className="wrapper">
           <JokeHeader />
-
-          <Link to="/generateJoke">Random Joke</Link>
-          <Link to="/kristenAymenSaudProject6ix">Add Joke</Link>
-          <Link to="/voteForJoke">Vote for a Joke</Link>
+          <header>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/generateJoke">Random Joke</Link>
+                </li>
+                <li>
+                  <Link to="/kristenAymenSaudProject6ix">Add Joke</Link>
+                </li>
+                <li>
+                  <Link to="/voteForJoke">Vote for a Joke</Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
           <Route exact path="/kristenAymenSaudProject6ix" component={JokeEntry} />
           <Route exact path="/voteForJoke" component={VoteOldJoke} />
           <Route path="/generateJoke" exact component={RandomJoke} />
