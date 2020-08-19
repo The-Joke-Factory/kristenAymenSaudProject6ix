@@ -18,7 +18,7 @@ class JokeEntry extends Component {
   // a function to increment the number of upvotes
   upVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map( (joke) => {
-      if (joke.id != jokeId) {
+      if (joke.id !== jokeId) {
         return joke;
       }
       //update and create new joke array with new value for downvotes
@@ -46,7 +46,7 @@ class JokeEntry extends Component {
     //function to increment the number of downvotes on jokes 
   downVoteJoke = (jokeId) => {
     const newJokes = this.state.jokes.map((joke) => {
-      if (joke.id != jokeId) {
+      if (joke.id !== jokeId) {
         return joke;
       }
       //update and create new joke array with new value for downvotes
@@ -102,7 +102,7 @@ class JokeEntry extends Component {
 
   // function to grab user input in joke input field, and name input field
   handleChange = (event) => {
-    if (event.target.id == "newJoke") {
+    if (event.target.id === "newJoke") {
       this.setState({
         jokeInput: event.target.value
       }) 
@@ -138,10 +138,9 @@ class JokeEntry extends Component {
   render() {
     return (
       <div>
-
          <form onSubmit={this.submitForm} action="submit">
             <label htmlFor="newJoke">Got a joke? Let's hear it</label>
-            <textarea onChange={this.handleChange} minLength="6" maxLength="200" id="newJoke" required/> 
+            <textarea onChange={this.handleChange} minLength="6" maxLength="400" id="newJoke" required/> 
             <label htmlFor="newJoke">Who's posting? (incase it sucks)</label>
             <input onChange={this.handleChange} maxLength="20" type="text" id="author" required />       
             <button className="addJokeBtn">Add Joke</button>  
