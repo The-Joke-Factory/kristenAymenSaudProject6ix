@@ -20,8 +20,6 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-
 }
 
 body {
@@ -46,7 +44,6 @@ body {
 }
 
 form {
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,6 +55,10 @@ form {
   margin-top: 20px;
   box-shadow: 5px 5px 5px;
   background-color:rgb(230, 225, 225);;
+}
+
+button:hover {
+  background-color: #3b0285;
 }
 
 textarea{
@@ -92,14 +93,6 @@ h1, h2, p, footer {
 li {
   list-style: none;
   margin-top: 10px;
-}
-
-.red {
-  background-color: red;
-}
-
-.green {
-  background-color: green;
 }
 
 .randomJokeBtn {
@@ -262,13 +255,20 @@ button {
   li {
     width: 100%;
   }
+
+  form, .randomJokeContainer {
+    width: 90%;
+  }
 }
 
 @media (max-width: 400px) {
-.jokeDetail {
-  
-  flex-direction: column;
-}
+  .jokeDetail {
+    flex-direction: column;
+  }
+
+  form, .randomJokeContainer {
+    width: 90%;
+  }
 }
 
 
