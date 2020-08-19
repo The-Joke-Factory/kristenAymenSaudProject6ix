@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class RandomJoke extends Component {
     randomJoke = null;
@@ -22,18 +23,21 @@ class RandomJoke extends Component {
     generateJoke() {
         this.setState({ isGeneratingJoke: true })
 
-        fetch(`//icanhazdadjoke.com/`, {
+        axios({
+            method: 'GET',
+            url: 'https://icanhazdadjoke.com/',
+            responseType: 'json',
             headers: {
-                accept: "application/json" //this will retrieve json data
+                Accept: "application/json" //this will retrieve json data
             }
         })
-
-        .then(response => response.json())
-        .then(json => {
-            this.setState({
-                randomJoke: json.joke,
-                isGeneratingJoke: false
-            });
+        .then((res) => {
+            console.log(res.data.joke);
+            this.setState(
+                {
+                    randomJoke: res.data.joke,
+                    isGeneratingJoke: false
+                })
         });
     }
 
