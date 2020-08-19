@@ -14,12 +14,10 @@ class App extends Component {
 
 render() {
     return (
-
       <Router>
         <div className="App">
           <div className="wrapper">
             <JokeHeader />
-
             <header>
               <nav>
                 <ul>
@@ -35,13 +33,10 @@ render() {
                 </ul>
               </nav>
             </header>
-
             <Route exact path="/kristenAymenSaudProject6ix" component={JokeEntry} />
             <Route exact path="/voteForJoke" component={VoteOldJoke} />
             <Route path="/generateJoke" exact component={RandomJoke} />
-
             <JokeFooter />
-
           </div>
         </div>
       </Router>

@@ -15,9 +15,6 @@ class VoteOldJoke extends Component {
       }
 
       componentDidMount() {
-        // this.setState({
-        //     userDate: ""
-        // })
         this.getJokes();
       }
     
@@ -76,14 +73,6 @@ class VoteOldJoke extends Component {
 
     this.setState({ jokes: newJokes });
   }
-
-  // pulling all jokes from firebase to display on page
- 
-
-  // function to grab user input in joke input field, and name input field
- 
-
-  // pushing data from joke form to firebase
  
     getJokes = () => {
         this.setState({
@@ -108,10 +97,9 @@ class VoteOldJoke extends Component {
               downvotes: record.downvotes
             }
     
-            // console.log(newJoke);
             newJokesArray.push(newJoke)
           }
-        //   console.log(this.state.userDate);
+
         let newArray = newJokesArray;
         if (this.state.userDate !== "") {
             newArray = newJokesArray.filter((joke) => {
@@ -143,9 +131,7 @@ class VoteOldJoke extends Component {
         })
     }
 
-    resetForm = (event) => {
-        // event.preventDefault();
-        
+    resetForm = (event) => {        
         this.setState({
             userDate: "",
         }, () => {

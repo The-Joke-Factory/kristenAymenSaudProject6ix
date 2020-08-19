@@ -30,7 +30,6 @@ class RandomJoke extends Component {
             }
         })
         .then((res) => {
-            console.log(res.data.joke);
             this.setState(
                 {
                     randomJoke: res.data.joke,

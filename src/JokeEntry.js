@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
 import Vote from './Vote';
-// import { app } from 'firebase';
 
 class JokeEntry extends Component {
 
@@ -89,7 +88,6 @@ class JokeEntry extends Component {
           downvotes: record.downvotes
         }
 
-        // console.log(newJoke);
         newJokesArray.push(newJoke)
       }
       newJokesArray.reverse();
@@ -116,32 +114,24 @@ class JokeEntry extends Component {
   // pushing data from joke form to firebase
   submitForm = (event) => {
     event.preventDefault();
-    // console.log(this.state.jokeInput);
     if (!this.state.jokeInput.match(/^[a-z]+/gi) || !this.state.nameInput.match(/^[a-z]+/gi)){
       alert("Please fill in all text fields");
       return;
     }
 
     const currentDate = new Date().toDateString();
-    // console.log(currentDate);
     
 
     const dbRef = firebase.database().ref();
     dbRef.push({ author: this.state.nameInput, created_on: currentDate, joke: this.state.jokeInput, upvotes: 0, downvotes: 0 })
-
-    
-
-    
   }
 
   
   render() {
-    console.log(this.state.jokes);
     return (
       <div>
          <form onSubmit={this.submitForm} action="submit">
             <label htmlFor="newJoke">Got a joke? Let's hear it</label>
-
             <textarea placeholder="Input your joke here" onChange={this.handleChange}  rows="5" cols="50" minLength="6" maxLength="200" id="newJoke" required/> 
             <label htmlFor="newJoke">Who's posting? (incase it sucks)</label>
             <input placeholder="Input your name here" onChange={this.handleChange} maxLength="20" type="text" id="author" required />       

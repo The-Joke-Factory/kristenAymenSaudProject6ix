@@ -249,7 +249,6 @@ button {
   }
 }
 
-
 @media (max-width: 750px) {
   .jokeContainer
   li {
@@ -264,10 +263,6 @@ button {
 @media (max-width: 400px) {
   .jokeDetail {
     flex-direction: column;
-  }
-
-  form, .randomJokeContainer {
-    width: 90%;
   }
 }
 
